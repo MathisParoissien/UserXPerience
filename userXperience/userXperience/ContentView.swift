@@ -28,10 +28,14 @@ struct ContentView: View {
                 }.tag(1)
                 Text("test 2")
                     .tag(2)
-                Text("test 3")
-                    .tag(3)
-                Text("test 4")
-                    .tag(4)
+                StackNavigationView {
+                    ChatView()
+                        .navigationBarHidden(true)
+                }.tag(3)
+                StackNavigationView {
+                    ProfileView()
+                        .navigationBarHidden(true)
+                }.tag(4)
             }
             
             HStack() {
@@ -51,6 +55,7 @@ struct ContentView: View {
                     .shadow(color: .black.opacity(0.05), radius: 3, x: 0.0, y: 0.0)
             )
         }.navigationBarHidden(true)
+            .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 

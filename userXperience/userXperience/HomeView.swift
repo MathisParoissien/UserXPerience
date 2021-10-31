@@ -11,6 +11,8 @@ import SwiftUIX
 struct HomeView: View {
     
     private var date = Date()
+    @State private var show = false
+    @State private var joined = true
     
     @Environment(\.navigator) private var navigator
     
@@ -38,7 +40,12 @@ struct HomeView: View {
                 }
                 Button {
                     HapticVibration.selection()
+                    if !join {
                     navigator?.push(TeamView())
+                    } else {
+                        show = true
+                        joined.toggle()
+                    }
                 } label: {
                     Text("\(join ? "Join" : "View")")
                         .font(.poppins(size: 12), weight: .semibold)
@@ -84,9 +91,24 @@ struct HomeView: View {
                 makeCell(name: "Roommates", date: "27 SEPT", people: 8, color: .Primary, join: false)
                 makeCell(name: "Family", date: "1 OCT", people: 10, color: .Secondary, join: false)
                     .padding(.vertical, 6)
-                makeCell(name: "Friends", date: "10 OCT", people: 2, color: .Primary, join: true)
+                makeCell(name: "Friends", date: "10 OCT", people: 2, color: .Primary, join: joined)
             }
             Spacer()
+        }.overlay {
+            if show {
+                ZStack {
+                    Color.white
+                    Image("Image-8")
+                        .resizable()
+                        .padding(50)
+                        .scaledToFit()
+                }.edgesIgnoringSafeArea(.all)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            show = false
+                        }
+                    }
+            }
         }
     }
 }

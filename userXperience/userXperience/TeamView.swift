@@ -64,24 +64,28 @@ struct TeamView: View {
             Spacer()
             Button {
                 HapticVibration.selection()
+                navigator?.present { WalletView() }
             } label: {
                 makeButton(text: "Commun Wallet", image: "Image-1", color: Color.Primary)
             }.buttonStyle(ScaleButtonStyle())
             .padding(.horizontal, 30)
             Button {
                 HapticVibration.selection()
+                navigator?.present { BudgetView() }
             } label: {
                 makeButton(text: "Budget", image: "Image-2", color: Color.Secondary)
             }.buttonStyle(ScaleButtonStyle())
                 .padding(.horizontal, 30)
             Button {
                 HapticVibration.selection()
+                navigator?.present { StatisticView() }
             } label: {
                 makeButton(text: "Statistic", image: "Image-3", color: Color.Primary)
             }.buttonStyle(ScaleButtonStyle())
                 .padding(.horizontal, 30)
             Button {
                 HapticVibration.selection()
+                navigator?.present { HistoryView() }
             } label: {
                 makeButton(text: "Transaction history", image: "Image-4", color: Color.Secondary)
             }.buttonStyle(ScaleButtonStyle())
